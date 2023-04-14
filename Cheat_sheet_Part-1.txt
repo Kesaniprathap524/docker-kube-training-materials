@@ -544,3 +544,87 @@ Task 5: Clean-up Resources
 kubectl delete -f nginx-sts.yaml
 
 
+
+
+
+
+
+
+
+Namespces: 
+
+K = kubectl  
+
+Ns = namespace 
+
+ 
+
+        k get ns 
+     7  k run demo --image nginx 
+     8  k get pods 
+     9  k describe pod demo 
+    10  k create ns demo 
+    11  k get ns 
+    12  k run demo --image nginx --namespace demo 
+    13  kubectl get pods 
+    14  k run demo123 --image nginx --namespace demo 
+    15  kubectl get pods 
+    16  kubectl get pods --namespace=demo 
+
+ 
+
+ 
+
+Chronejobs: 
+
+Which is used to execute particular task repeatedly 
+
+ 
+
+vi cronjob.yaml 
+
+ 
+
+apiVersion: batch/v1 
+kind: CronJob 
+metadata: 
+   name: hello1 
+spec: 
+   jobTemplate: 
+     spec: 
+      template: 
+        spec: 
+         containers: 
+           - name: hew 
+             image: busybox 
+             args: 
+              - /bin/sh 
+              - "-c" 
+              - echo Hello world 
+         restartPolicy: OnFailure 
+   schedule: "*/1 * * * *" 
+
+ 
+     6  k apply -f cronjob.yaml 
+     7  vi cronjob.yaml 
+     8  k apply -f cronjob.yaml 
+     9  vi cronjob.yaml 
+    10  k apply -f cronjob.yaml 
+    11  kubectl get cronjobs 
+    12  kubectl get pods 
+    13  vi cronjob.yaml 
+    14  kubectl get pods 
+    15  kubectl describe pod hello1-28021624-vs6gr 
+    16  kubectl logs hello1 
+    17  kubectl get pods 
+    18  kubectl logs hello1-28021624-vs6gr  
+    19  kubectl logs hello1-28021626-hph9x  
+    20  kubectl get pods 
+    21  kubectl get jobs 
+    22  kubectl get cronjobs 
+    23  vi cronjob.yaml 
+    24  history 
+
+ 
+
+
